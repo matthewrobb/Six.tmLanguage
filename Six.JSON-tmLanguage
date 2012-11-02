@@ -1,0 +1,116 @@
+{
+    "comment": "Six - JS.next Transpiler: version 1.0",
+    "fileTypes": ["six", "six.js", "Sakefile", "Sixfile"],
+    "name": "Six",
+
+    "repository": {
+        "arrow-function": {
+            "begin": "(?:([a-zA-Z_$]*)\\s*([=:]{1})\\s*)?(?=(?:\\([a-zA-Z_$,\\s]*\\)\\s*(?==>))?(?:(?<!\\))[a-zA-Z_$]*)?\\s*=>)",
+            "beginCaptures": {
+                "1": { "name": "entity.name.function.six" },
+                "2": { "name": "keyword.operator.six" }
+            },
+            "patterns": [
+                {
+                    "begin": "\\(",
+                    "patterns": [
+                        {
+                            "match": "[a-zA-Z_$]+",
+                            "name": "variable.parameter.function.six"
+                        }
+                    ],
+                    "end": "\\)",
+                    "name": "meta.function.parameter.list.six"
+                },
+                {
+                    "match": "[a-zA-Z_$]+(?!\\))\\s*(?==>)",
+                    "name": "variable.parameter.function.six"
+                }
+            ],
+            "end": "(=>)",
+            "endCaptures": {
+                "1": { "name": "storage.type.function.six" }
+            },
+            "name": "meta.function.six"
+        }
+    },
+
+    "patterns": [
+
+        {
+            "include": "#arrow-function"
+        },
+
+        {
+            "begin": "([g|s]et\\s+)?([a-zA-Z_$]+)(?<!function)\\s*(?=\\([a-zA-Z_$,\\s]*\\)\\s*\\{)",
+            "beginCaptures": {
+                "1": { "name": "storage.type.six" },
+                "2": { "name": "entity.name.function.six" }
+            },
+            "patterns": [
+                {
+                    "begin": "\\(",
+                    "patterns": [
+                        {
+                            "match": "[a-zA-Z_$]+",
+                            "name": "variable.parameter.function.six"
+                        }
+                    ],
+                    "end": "\\)",
+                    "name": "meta.function.parameter.list.six"
+                }
+            ],
+            "end": "(?<=\\))\\s*\\{",
+            "name": "meta.function.six"
+        },
+
+        {
+            "captures": {
+                "1": { "name": "keyword.operator.six" }
+            }, 
+            "comment": "Match stuff like: module name {...}", 
+            "match": "\\b(module)\\s*(\\s*[a-zA-Z0-9_?.$][\\w?.$]*)\\s*", 
+            "name": "meta.function.six"
+        },
+
+        {
+            "include": "source.js"
+        },
+
+        {
+            "begin": "(`)",
+            "beginCaptures": {
+                "1": { "name": "string.quoted.double.six" }
+            },
+            "patterns": [
+            
+                {   
+                    "begin": "(\\$){",
+                    "beginCaptures": {
+                        "1": { "name": "keyword.operator.six" }
+                    },
+                    "patterns": [
+                        { "include": "$self" }
+                    ],
+                    "end": "}",
+                    "name": "meta.template.replacement.six"
+                },
+
+                {
+                    "match": ".",
+                    "name": "string.quoted.double.six"
+                }
+
+            ],
+            "end": "(`)",
+            "endCaptures": {
+                "1": { "name": "string.quoted.double.six" }
+            },
+            "name": "meta.template.six"
+        }
+
+    ],
+
+    "scopeName": "source.six",
+    "uuid": "623fff25-01b9-481b-a89c-af5ba523d30c"
+}
