@@ -77,10 +77,6 @@
 			<string>meta.function.six</string>
 		</dict>
 		<dict>
-			<key>include</key>
-			<string>source.js</string>
-		</dict>
-		<dict>
 			<key>begin</key>
 			<string>(`)</string>
 			<key>beginCaptures</key>
@@ -135,6 +131,10 @@
 					<string>string.quoted.double.six</string>
 				</dict>
 			</array>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>source.js</string>
 		</dict>
 	</array>
 	<key>repository</key>

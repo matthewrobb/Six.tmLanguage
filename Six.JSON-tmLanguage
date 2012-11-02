@@ -74,10 +74,6 @@
         },
 
         {
-            "include": "source.js"
-        },
-
-        {
             "begin": "(`)",
             "beginCaptures": {
                 "1": { "name": "string.quoted.double.six" }
@@ -107,6 +103,10 @@
                 "1": { "name": "string.quoted.double.six" }
             },
             "name": "meta.template.six"
+        },
+
+        {
+            "include": "source.js"
         }
 
     ],
